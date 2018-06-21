@@ -18,12 +18,16 @@ function myip() {
 }
 
 function github() {
-	if [ $1 ]; then
-		git clone https://github.com/emanuelelongo/$1.git
+	if [ $2 ]; then
+		git clone https://github.com//$1/$2.git
 		cd $1;
 		return
 	fi
-	curl -s https://api.github.com/users/emanuelelongo/repos | jq ".[].name" | tr -d '"'
+	curl -s https://api.github.com/users/$1/repos | jq ".[].name" | tr -d '"'
+}
+
+function ric() {
+    pbpaste | sed -e 's/'"$1"'/'"$2"'/g' | pbcopy
 }
 
 function gtree {
