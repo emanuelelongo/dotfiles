@@ -19,7 +19,7 @@ function myip() {
 
 function github() {
 	if [ $2 ]; then
-		git clone https://github.com//$1/$2.git
+		git clone https://github.com/$1/$2.git
 		cd $1;
 		return
 	fi
