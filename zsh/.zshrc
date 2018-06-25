@@ -8,7 +8,7 @@ export LANG=en_US.UTF-8
 
 #aliases
 alias sz="pv -b > /dev/null"
-
+alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 # Custom functions
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
