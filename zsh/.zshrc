@@ -57,6 +57,10 @@ export PATH=$PATH:/usr/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/bin
 
+# this is shell for autocompletion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
 # N - Node.Js Version Manager
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  
 
