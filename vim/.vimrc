@@ -6,10 +6,12 @@ call plug#begin('~/.vim/plugged')
  	Plug 'mileszs/ack.vim'
  	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
  	Plug 'tpope/vim-commentary'
- 	Plug 'tpope/vim-fugitive'
+        Plug 'airblade/vim-gitgutter'
+        Plug 'tpope/vim-fugitive'
  	Plug 'vim-airline/vim-airline'
  	Plug 'w0rp/ale'
  	Plug 'morhetz/gruvbox'
+ 	Plug 'tpope/vim-surround'
 call plug#end()
 syntax on
 :let mapleader = ","
@@ -39,7 +41,10 @@ set diffopt+=vertical
 let NERDTreeShowHidden=1
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>f :Files<CR>
 nnoremap <CR> :noh<CR><CR>
+nnoremap <F12> :YcmCompleter GoToDefinition<CR> 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
