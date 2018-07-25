@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'scrooloose/nerdtree'
  	Plug 'editorconfig/editorconfig-vim'
  	Plug 'mileszs/ack.vim'
- 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+ 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --rust-completer' }
  	Plug 'tpope/vim-commentary'
         Plug 'airblade/vim-gitgutter'
         Plug 'tpope/vim-fugitive'
@@ -43,6 +43,8 @@ nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
+nmap <leader>d :Gdiff<CR>
+nmap <leader>s :Gstatus<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR> 
 set completeopt-=preview
@@ -53,4 +55,4 @@ let g:ale_linters = {'javascript': ['eslint']}
 colorscheme gruvbox
 set t_Co=256
 set background=dark
-
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
