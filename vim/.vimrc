@@ -43,6 +43,7 @@ set noerrorbells
 set clipboard=unnamed
 set autoread
 set diffopt+=vertical
+set hid
 let NERDTreeShowHidden=1
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
