@@ -27,15 +27,15 @@ brew install tree
 ```
 
 ## Node JS
-Install N version manager
+Install N version manager (this will also install Node LTS version)
 
 ``` sh
 curl -L https://git.io/n-install | bash
 ```
 
-and then install Node with it
+and then install Yarn (--without-node options is mandatory)
 ``` sh
-n lts # or what version you wany
+brew install yarn --without-node
 ```
 
 
@@ -54,10 +54,15 @@ stow git
 # etc
 ```
 
+## iTerm2 configuration
+iTerm2 -> Preferences -> "Load preferences from custom folder or URL"
+Set to "/Users/<username>/.iterm2"
+
 ## Vim and Neovim
 ``` sh
 brew install vim
 brew install neovim
+pip3 install neovim
 ```
 Make neovim uses same configuration of vim
 ``` sh
