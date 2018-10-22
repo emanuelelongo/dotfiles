@@ -828,15 +828,15 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>530 476 620 392 0 0 1680 1027 </string>
+	<string>530 483 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>131 1176 606 469 -138 1050 1920 1178 </string>
+	<string>131 1244 609 401 -138 1050 1920 1200 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-26 1722 796 473 -138 1050 1920 1178 </string>
+	<string>-26 1788 770 429 -138 1050 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>209 1386 570 452 -138 1050 1920 1178 </string>
+	<string>0 32 1680 894 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 25 1680 1003 0 0 1680 1028 </string>
+	<string>281 1142 822 826 -138 1050 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>130 1159 570 452 -138 1050 1920 1200 </string>
 	<key>New Bookmarks</key>
@@ -1634,7 +1634,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-06-15T07:58:49Z</date>
+	<date>2018-10-16T12:58:52Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1644,7 +1644,9 @@
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>TabStyle</key>
-	<integer>0</integer>
+	<integer>1</integer>
+	<key>TabViewType</key>
+	<integer>1</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>WindowNumber</key>
@@ -1654,7 +1656,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.1.6</string>
+	<string>3.2.3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

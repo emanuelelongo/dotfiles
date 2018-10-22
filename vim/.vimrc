@@ -1,3 +1,7 @@
+" Note to self: next time you install a new Python version, please remember to
+" pip3 install --upgrade neovim
+" and then
+" :UpdateRemotePlugins
 call plug#begin('~/.vim/plugged')
 	Plug '/usr/local/opt/fzf'
  	Plug 'junegunn/fzf.vim'
@@ -12,6 +16,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'w0rp/ale'
  	Plug 'morhetz/gruvbox'
  	Plug 'tpope/vim-surround'
+ 	Plug 'pangloss/vim-javascript'
 call plug#end()
 syntax on
 :let mapleader = ","
@@ -43,16 +48,27 @@ nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
+nmap <leader>a :Ag<CR>
 nmap <leader>d :Gdiff<CR>
 nmap <leader>s :Gstatus<CR>
 nnoremap <CR> :noh<CR><CR>
-nnoremap <F12> :YcmCompleter GoToDefinition<CR> 
+nnoremap <F12> :YcmCompleter GoToDefinition<CR>
+" if a PopUp Menu is visible then ESC close the menu and back to insert mode
+inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ale_fixers = {'javascript': ['prettier']}
+" let g:ale_fixers = {'javascript': ['prettier']}
 let g:ale_linters = {'javascript': ['eslint']}
 colorscheme gruvbox
 set t_Co=256
 set background=dark
+" save the file (like w) as root
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+" Highlight ES6 template strings
+hi link javaScriptTemplateDelim String
+hi link javaScriptTemplateVar Text
+hi link javaScriptTemplateString String
+" URL Encode and Decode
+vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
