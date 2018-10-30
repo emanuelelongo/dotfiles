@@ -48,7 +48,7 @@ nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
-nmap <leader>a :Ag<CR>
+nmap <leader>g :Ag<CR>
 nmap <leader>d :Gdiff<CR>
 nmap <leader>s :Gstatus<CR>
 nnoremap <CR> :noh<CR><CR>

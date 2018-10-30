@@ -3,8 +3,8 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-# export LC_ALL=en_US.UTF-8
-# export LANG=en_US.UTF-8
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 #aliases
 alias sz="pv -b > /dev/null"
@@ -40,6 +40,22 @@ function gtree {
  	else 
  		tree "${@}" -a
  	fi
+}
+
+function raw_http() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: raw_http <request_file> <hostname>"
+        return
+    fi
+    (cat $1; sleep 1 ) | ncat $2 80
+}
+
+function raw_https() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: raw_https <request_file> <hostname>"
+        return
+    fi
+    (cat $1; sleep 1 ) | ncat --ssl $2 443
 }
 
 # PATH
