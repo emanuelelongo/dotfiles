@@ -59,7 +59,7 @@ function raw_https() {
 }
 
 # PATH
-export PATH=$HOME/bin
+export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.vimpkg/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.yarn/bin
