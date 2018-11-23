@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'morhetz/gruvbox'
  	Plug 'tpope/vim-surround'
  	Plug 'pangloss/vim-javascript'
+        Plug 'mhinz/vim-startify'
 call plug#end()
 syntax on
 :let mapleader = ","
@@ -52,6 +53,7 @@ nmap <leader>f :Files<CR>
 nmap <leader>g :Ag<CR>
 nmap <leader>d :Gdiff<CR>
 nmap <leader>s :Gstatus<CR>
+nmap <leader>h :Startify<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
 " if a PopUp Menu is visible then ESC close the menu and back to insert mode
