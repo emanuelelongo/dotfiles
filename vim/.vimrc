@@ -20,6 +20,12 @@ call plug#begin('~/.vim/plugged')
         Plug 'mhinz/vim-startify'
 call plug#end()
 syntax on
+:set number relativenumber
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
 :let mapleader = ","
 set nowrap
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -46,6 +52,7 @@ set autoread
 set diffopt+=vertical
 set hid
 let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=0
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
@@ -75,3 +82,4 @@ hi link javaScriptTemplateString String
 " URL Encode and Decode
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+

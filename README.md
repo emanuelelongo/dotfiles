@@ -67,7 +67,7 @@ pip3 install neovim
 Make neovim uses same configuration of vim
 ``` sh
 mkdir -p .config/nvim
-ln .vimrc .config/nvim/init.vim
+ln -s .vimrc .config/nvim/init.vim
 ```
 
 Let's `vim` opens __nvim__ and `vi` opens __vim__
