@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'tpope/vim-commentary'
         Plug 'airblade/vim-gitgutter'
         Plug 'tpope/vim-fugitive'
+        Plug 'junegunn/gv.vim'
  	Plug 'vim-airline/vim-airline'
  	Plug 'w0rp/ale'
  	Plug 'morhetz/gruvbox'
@@ -52,15 +53,17 @@ set autoread
 set diffopt+=vertical
 set hid
 let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=0
+let NERDTreeShowLineNumbers=1
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
 nmap <leader>g :Ag<CR>
-nmap <leader>d :Gdiff<CR>
+nmap <leader>d :GdiffInTab<CR>
 nmap <leader>s :Gstatus<CR>
-nmap <leader>h :Startify<CR>
+nmap <leader>h :GV<CR>
+nmap <leader>hf :GV!<CR>
+nmap <leader>q :tabclose<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
 " if a PopUp Menu is visible then ESC close the menu and back to insert mode
@@ -82,4 +85,4 @@ hi link javaScriptTemplateString String
 " URL Encode and Decode
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
-
+command GdiffInTab tabedit %|Gdiff

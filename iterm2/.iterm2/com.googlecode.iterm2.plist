@@ -786,6 +786,8 @@
 	<false/>
 	<key>HideScrollbar</key>
 	<true/>
+	<key>HideTab</key>
+	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>JobName</key>
@@ -828,15 +830,15 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>530 483 620 392 0 0 1680 1027 </string>
+	<string>530 482 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>131 1244 609 401 -138 1050 1920 1200 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-26 1788 770 429 -138 1050 1920 1178 </string>
+	<string>-26 1810 770 429 -138 1050 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 32 1680 894 0 0 1680 1027 </string>
+	<string>528 1313 570 476 -138 1050 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>281 1142 822 826 -138 1050 1920 1200 </string>
+	<string>331 108 1039 476 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>130 1159 570 452 -138 1050 1920 1200 </string>
 	<key>New Bookmarks</key>
@@ -1572,6 +1574,8 @@
 			<string>/Users/longoe</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -1634,14 +1638,16 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-10-16T12:58:52Z</date>
+	<date>2018-11-23T10:10:08Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowPaneTitles</key>
+	<false/>
+	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>TabStyle</key>
 	<integer>1</integer>
@@ -1656,7 +1662,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.2.3</string>
+	<string>3.2.5</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
