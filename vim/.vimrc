@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'tpope/vim-surround'
  	Plug 'pangloss/vim-javascript'
         Plug 'mhinz/vim-startify'
+        Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 syntax on
 :set number relativenumber
