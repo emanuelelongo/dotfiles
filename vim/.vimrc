@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'morhetz/gruvbox'
  	Plug 'tpope/vim-surround'
  	Plug 'pangloss/vim-javascript'
+ 	Plug 'mxw/vim-jsx'
         Plug 'mhinz/vim-startify'
         Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
@@ -55,6 +56,15 @@ set diffopt+=vertical
 set hid
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
+"Moving between splits by ALT+Arrows
+nnoremap <A-Left> <C-w>h
+nnoremap <A-Down> <C-w>j
+nnoremap <A-Up> <C-w>k
+nnoremap <A-Right> <C-w>l
+"Split vertical ALT+d and horizontal ALT+D
+nnoremap <A-d> <C-w>v
+nnoremap <A-D> <C-w>s
+nnoremap <A-w> <Esc>:q<CR>
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
@@ -67,6 +77,7 @@ nmap <leader>hf :GV!<CR>
 nmap <leader>q :tabclose<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
+:map <C-j> cw<C-r>0<ESC>
 " if a PopUp Menu is visible then ESC close the menu and back to insert mode
 inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
 set completeopt-=preview
