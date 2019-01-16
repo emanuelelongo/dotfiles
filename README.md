@@ -24,6 +24,8 @@ brew install jq
 brew install httpie
 brew install fd
 brew install tree
+brew cask install osxfuse
+brew install sshfs
 ```
 
 ## Node JS
@@ -103,5 +105,3 @@ $(brew --prefix)/opt/fzf/install
 brew install ag
 ```
 
-## What about non-terminal app?
-Install [Firefox](www.mozilla.org) and you are done.
