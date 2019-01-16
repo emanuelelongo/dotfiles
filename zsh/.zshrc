@@ -11,7 +11,13 @@ alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias listen="nc -kl"
 
+
 # Custom functions
+function http_ok() {
+    # like "nc -kl" but more specific to http client
+    while true; do ncat -l -p $1 -c "echo HTTP/1.1 200 OK'\n\n'${2}'\n'" -o /dev/stdout ; done
+}
+
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
 function myip() { 

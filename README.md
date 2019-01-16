@@ -28,6 +28,9 @@ brew cask install osxfuse
 brew install sshfs
 ```
 
+## Docker
+Install Docker from its [official page](https://www.docker.com/)
+
 ## Node JS
 Install N version manager (this will also install Node LTS version)
 
@@ -45,6 +48,12 @@ brew install yarn --without-node
 ``` sh
 curl https://sh.rustup.rs -sSf | sh
 ```
+
+## Go
+``` sh
+brew install golang
+```
+
 
 ## Dotfiles
 ``` sh
@@ -103,5 +112,12 @@ Then from vim and neovim run:
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 brew install ag
+```
+
+## Productivity tools
+
+### [goseq](https://github.com/lmika/goseq) for sequence diagrams 
+``` sh
+go get github.com/lmika/goseq
 ```
 
