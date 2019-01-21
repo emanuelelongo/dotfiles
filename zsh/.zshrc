@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+export REPOS=$HOME/repos
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
@@ -10,13 +11,9 @@ export EDITOR="$VISUAL"
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias listen="ncat -kl"
-
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # Custom functions
-function http_ok() {
-    ncat -l -k -p $1 -c "echo HTTP/1.1 200 OK'\n\n'${2}'\n'" -o /dev/stdout
-}
-
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
 function myip() { 
@@ -47,20 +44,49 @@ function gtree {
  	fi
 }
 
-function raw_http() {
+function http_ok() {
+    if [ "$#" -lt 1 ]; then
+        echo "Create a simple http server that always return \"200 OK\" response\n"
+        echo "Usage: http_ok <port> [response text]"
+        return
+    fi
+
+    ncat -l -k -p $1 -c "echo HTTP/1.1 200 OK'\n\n'${2}'\n'" -o /dev/stdout
+}
+
+function http_raw() {
     if [ "$#" -ne 2 ]; then
-        echo "Usage: raw_http <request_file> <hostname>"
+        echo "Send raw http request\n"
+        echo "Usage: raw_http <request_file> <endpoint>"
         return
     fi
     (cat $1; sleep 1 ) | ncat $2 80
 }
 
-function raw_https() {
+function http_raw_ssl() {
     if [ "$#" -ne 2 ]; then
-        echo "Usage: raw_https <request_file> <hostname>"
+        echo "Send raw http request through ssl\n"
+        echo "Usage: http_raw_ssl <request_file> <endpoint>"
         return
     fi
     (cat $1; sleep 1 ) | ncat --ssl $2 443
+}
+
+function http_poll() {
+    if [ "$#" -ne 1 ]; then
+        echo "Notify when an http endpoint becomes available\n"
+        echo "Usage: http_poll <endpoint>"
+        return
+    fi
+
+    while true; do
+        output=$(http -h $1 --timeout=5 2>1 | grep HTTP/1.1 | awk {'print $2'})
+        if [ "$output" -eq "200" ]; then 
+            osascript -e 'tell app "System Events" to display alert "'$1' is now available"'
+            return
+        fi
+        sleep 60
+    done
 }
 
 # PATH
