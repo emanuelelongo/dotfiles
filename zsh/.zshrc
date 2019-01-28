@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
-ZSH_THEME="robbyrussell"
+ZSH_THEME="refined"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
@@ -12,6 +12,28 @@ alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias listen="ncat -kl"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
+# vim mode
+bindkey -v
+
+# vim mode switching time (10 ms factor)
+export KEYTIMEOUT=1
+
+# restore history completion with up-down arrow keys
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
+
+# Update the prompt with vim mode info
+function zle-keymap-select() {
+  zle reset-prompt
+  zle -R
+}
+zle -N zle-keymap-select
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/[% NORMAL]%}/(main|viins)/[% INSERT]%}"
+}
+RPS1='$(vi_mode_prompt_info)'
+RPS2=$RPS1
 
 # Custom functions
 function mkcd() { mkdir -p "$@" && cd "$_"; }
@@ -124,3 +146,4 @@ export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 
 # Go - Go Language
 export GOPATH=$HOME/go
+
