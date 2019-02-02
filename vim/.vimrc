@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
  	Plug 'mxw/vim-jsx'
         Plug 'mhinz/vim-startify'
         Plug 'mustache/vim-mustache-handlebars'
+        Plug 'ervandew/supertab'
 call plug#end()
 syntax on
 :set number relativenumber
@@ -77,7 +78,8 @@ nmap <leader>hf :GV!<CR>
 nmap <leader>q :tabclose<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
-:map <C-j> cw<C-r>0<ESC>
+" CTRL-j replace the word under cursor with current clipboard 
+:map <C-j> ciw<C-r>0<ESC>
 " if a PopUp Menu is visible then ESC close the menu and back to insert mode
 inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
 set completeopt-=preview
