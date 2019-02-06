@@ -13,7 +13,8 @@
     	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' 
     	lga = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all 
 	hs = log --follow -p
-    	puff = pull --ff-only	
+        files = diff-tree -r --name-only -no-commit-it
+        puff = pull --ff-only	
     	sync = "!git fetch -p && git remote prune origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
     	ba = "! for branch in `git branch -r | grep -v HEAD`;do echo `git show --pretty=format:\"%Cred %cn %>|(40) %Cblue %ar %>|(80) %Creset\" $branch | head -n 1` $branch; done | sort -r"
 
