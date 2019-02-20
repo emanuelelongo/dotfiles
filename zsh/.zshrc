@@ -1,11 +1,18 @@
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
-ZSH_THEME="refined"
+ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# show PWD as tab name instead of process name
+# (warning: some zsh theme doesn't work well with this configuration)
+DISABLE_AUTO_TITLE="true"
+function precmd () {
+  window_title="\033]0;${PWD##*/}\007"
+  echo -ne "$window_title"
+}
 
 #aliases
 alias sz="pv -b > /dev/null"
@@ -14,14 +21,14 @@ alias listen="ncat -kl"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # vim mode
-bindkey -v
+# bindkey -v
 
 # vim mode switching time (10 ms factor)
-export KEYTIMEOUT=1
+# export KEYTIMEOUT=1
 
 # restore history completion with up-down arrow keys
-bindkey '^[OA' up-line-or-beginning-search
-bindkey '^[OB' down-line-or-beginning-search
+# bindkey '^[OA' up-line-or-beginning-search
+# bindkey '^[OB' down-line-or-beginning-search
 
 # Update the prompt with vim mode info
 function zle-keymap-select() {

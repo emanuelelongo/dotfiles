@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'mhinz/vim-startify'
         Plug 'mustache/vim-mustache-handlebars'
         Plug 'ervandew/supertab'
+        Plug 'chr4/nginx.vim'
 call plug#end()
 syntax on
 :set number relativenumber
@@ -70,6 +71,7 @@ nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>f :Files<CR>
+nmap <leader>a :Ack!<space>
 nmap <leader>g :Ag<CR>
 nmap <leader>d :GdiffInTab<CR>
 nmap <leader>s :Gstatus<CR>
