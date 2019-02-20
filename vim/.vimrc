@@ -22,7 +22,9 @@ call plug#begin('~/.vim/plugged')
         Plug 'mhinz/vim-startify'
         Plug 'mustache/vim-mustache-handlebars'
         Plug 'ervandew/supertab'
+        Plug 'davidhalter/jedi-vim'
         Plug 'chr4/nginx.vim'
+
 call plug#end()
 syntax on
 :set number relativenumber
