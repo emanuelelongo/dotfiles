@@ -89,7 +89,7 @@ inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
-" let g:ale_fixers = {'javascript': ['prettier']}
+let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_linters = {'javascript': ['eslint']}
 colorscheme gruvbox
 set t_Co=256
