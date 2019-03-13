@@ -7,14 +7,16 @@ The list is not complete so, for your own sake, please remember to add or fix th
 ## iTerm2
 Install from [here](https://www.iterm2.com/)
 
-## Oh-my-zsh
-``` sh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
 
 ## Homebrew
 ``` sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+## Fish Shell and Oh-My-Fish
+``` sh
+brew install fish
+curl -L https://get.oh-my.fish | fish
 ```
 
 ## Basic tools
@@ -60,9 +62,11 @@ brew install golang
 brew install stow
 git clone https://github.com/emanuelelongo/dotfiles.git .dotfiles
 cd .dotfiles
+# IMPORTANT: config folder require explicit target
+stow config -t ~/.config
 stow vim
 stow git
-# etc
+# etc 
 ```
 
 ## iTerm2 configuration
@@ -113,11 +117,3 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 brew install ag
 ```
-
-## Productivity tools
-
-### [goseq](https://github.com/lmika/goseq) for sequence diagrams 
-``` sh
-go get github.com/lmika/goseq
-```
-
