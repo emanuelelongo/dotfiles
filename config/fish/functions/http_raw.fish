@@ -5,4 +5,4 @@ function http_raw
         return
     end
     (cat $argv[1]; sleep 1 ) | ncat $argv[2] 80
-}
+end

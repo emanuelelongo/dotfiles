@@ -29,10 +29,12 @@ set -x PATH $PATH /usr/bin
 set -x PATH $PATH /sbin
 set -x PATH $PATH /bin
 
-# ALIASES
+# Aliases
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+# Not shareable environment variables
+source ~/.config/fish/confidential_env.fish
