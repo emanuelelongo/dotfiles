@@ -37,4 +37,6 @@ alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # Not shareable environment variables
-source ~/.config/fish/confidential_env.fish
+if test -e ~/.config/fish/confidential_env.fish
+    source ~/.config/fish/confidential_env.fish
+end

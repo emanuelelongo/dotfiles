@@ -14,9 +14,18 @@ Install from [here](https://www.iterm2.com/)
 ```
 
 ## Fish Shell and Oh-My-Fish
+Install Fish shell and Oh-My-Fish:
 ``` sh
 brew install fish
 curl -L https://get.oh-my.fish | fish
+```
+
+remove their configuration files so that **Stow** can link them
+```
+rm -rf ~/.config/fish
+rm -rf ~/.config/omf
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+chsh -s /usr/local/bin/fish
 ```
 
 ## Basic tools
@@ -28,6 +37,8 @@ brew install fd
 brew install tree
 brew cask install osxfuse
 brew install sshfs
+brew install lynx
+brew install pandoc
 ```
 
 ## Docker
