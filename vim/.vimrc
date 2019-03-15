@@ -37,6 +37,7 @@ syntax on
 set nowrap
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set backspace=indent,eol,start
+set sidescroll=1
 set autoindent
 set copyindent
 set showmatch
@@ -69,6 +70,8 @@ nnoremap <A-Right> <C-w>l
 nnoremap <A-d> <C-w>v
 nnoremap <A-D> <C-w>s
 nnoremap <A-w> <Esc>:q<CR>
+map <C-L> 20zl " Scroll 20 characters to the right
+map <C-H> 20zh " Scroll 20 characters to the Left
 nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>b :Buffers<CR>
@@ -104,3 +107,11 @@ hi link javaScriptTemplateString String
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
 command GdiffInTab tabedit %|Gdiff
+" Makes so that Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
+function! s:ag_with_opts(arg, bang)
+  let tokens  = split(a:arg)
+  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
+  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+endfunction
+autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
