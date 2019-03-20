@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(git, docker)
 source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -115,7 +115,7 @@ export PATH=$PATH:/usr/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/bin
 
-# this is shell for autocompletion
+# load autocompletions
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
@@ -134,3 +134,15 @@ export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 # Go - Go Language
 export GOPATH=$HOME/go
 
+# Completion for the dotnet CLI
+_dotnet_zsh_complete() 
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+compctl -K _dotnet_zsh_complete dotnet
+
+# Completion for minikube and kubectl
+source <(minikube completion zsh)
+source <(kubectl completion zsh)

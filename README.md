@@ -13,6 +13,14 @@ Install from [here](https://www.iterm2.com/)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+## Oh-My-Zsh
+``` sh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# If I'm in zsh mood
+chsh -s /bin/zsh
+
+```
+
 ## Fish Shell and Oh-My-Fish
 Install Fish shell and Oh-My-Fish:
 ``` sh
@@ -25,6 +33,7 @@ remove their configuration files so that **Stow** can link them
 rm -rf ~/.config/fish
 rm -rf ~/.config/omf
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
+# If I'm in fish mood
 chsh -s /usr/local/bin/fish
 ```
 

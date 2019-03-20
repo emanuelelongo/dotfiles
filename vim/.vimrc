@@ -41,7 +41,6 @@ set sidescroll=1
 set autoindent
 set copyindent
 set showmatch
-set ignorecase
 set smartcase
 set hlsearch
 set incsearch
