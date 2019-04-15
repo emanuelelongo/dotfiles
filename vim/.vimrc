@@ -22,12 +22,10 @@ call plug#begin('~/.vim/plugged')
         Plug 'mhinz/vim-startify'
         Plug 'mustache/vim-mustache-handlebars'
         Plug 'ervandew/supertab'
-        Plug 'davidhalter/jedi-vim'
         Plug 'chr4/nginx.vim'
 
 call plug#end()
 syntax on
-:set number relativenumber
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -41,7 +39,7 @@ set sidescroll=1
 set autoindent
 set copyindent
 set showmatch
-set smartcase
+set ignorecase
 set hlsearch
 set incsearch
 set history=1000
@@ -82,6 +80,7 @@ nmap <leader>s :Gstatus<CR>
 nmap <leader>h :GV<CR>
 nmap <leader>hf :GV!<CR>
 nmap <leader>q :tabclose<CR>
+nmap <Tab> :Buffers<CRnmap <Tab> :Buffers<CR>>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <F12> :YcmCompleter GoToDefinition<CR>
 " CTRL-j replace the word under cursor with current clipboard 
@@ -114,3 +113,43 @@ function! s:ag_with_opts(arg, bang)
   call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
+
+" Escape special characters in a string for exact matching.
+" This is useful to copying strings from the file to the search tool
+function! EscapeString (string)
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
+endfunction
+
+" Get the current visual block for search and replaces
+" This function passed the visual block through a string escape function
+function! GetVisual() range
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+
+  return escaped_selection
+endfunction
+
+" Start the find and replace command across the entire file
+vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
+
+:set foldmethod=syntax
+
