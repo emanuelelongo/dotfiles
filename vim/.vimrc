@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'mustache/vim-mustache-handlebars'
         Plug 'ervandew/supertab'
         Plug 'chr4/nginx.vim'
+        Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
 syntax on
@@ -152,4 +153,5 @@ endfunction
 vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
 
 :set foldmethod=syntax
-
+let g:OmniSharp_server_type = 'roslyn'
+let g:OmniSharp_prefer_global_sln = 1
