@@ -17,6 +17,7 @@ set -x PATH $PATH $HOME/.vimpkg/bin
 set -x PATH $PATH $HOME/.cargo/bin
 set -x PATH $PATH $HOME/.yarn/bin
 set -x PATH $PATH $HOME/go/bin
+set -x PATH $PATH $HOME/Library/Python/3.7/bin
 set -x PATH $PATH /Library/Frameworks/Mono.framework/Versions/Current/Commands
 set -x PATH $PATH /usr/local/Cellar/vim/8.1.0001/bin
 set -x PATH $PATH /usr/local/opt/go/libexec/bin

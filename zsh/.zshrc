@@ -103,6 +103,7 @@ export PATH=$PATH:$HOME/.vimpkg/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.yarn/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/Library/Python/3.7/bin
 export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 export PATH=$PATH:/usr/local/Cellar/vim/8.1.0001/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
