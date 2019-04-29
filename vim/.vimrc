@@ -24,7 +24,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'ervandew/supertab'
         Plug 'chr4/nginx.vim'
         Plug 'OmniSharp/omnisharp-vim'
-
+        Plug 'jpalardy/vim-slime'
 call plug#end()
 syntax on
 :augroup numbertoggle
@@ -87,7 +87,7 @@ nnoremap <F12> :YcmCompleter GoToDefinition<CR>
 " CTRL-j replace the word under cursor with current clipboard 
 :map <C-j> ciw<C-r>0<ESC>
 " if a PopUp Menu is visible then ESC close the menu and back to insert mode
-inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
+" inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -155,3 +155,11 @@ vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
 :set foldmethod=syntax
 let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_prefer_global_sln = 1
+
+" CTRL-C CTRL-C send current selection to a REPL on a terminal inside vim
+" to open a terminal inside vim type :terminal
+" you will be asked the jobid to identify the terminal
+" the jobid is the number shown in the section_b of airline
+let g:slime_target = "neovim"
+let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
+
