@@ -1,30 +1,40 @@
 " Note to self: next time you install a new Python version, please remember to
+"
 " pip3 install --upgrade neovim
 " and then
 " :UpdateRemotePlugins
 call plug#begin('~/.vim/plugged')
-	Plug '/usr/local/opt/fzf'
- 	Plug 'junegunn/fzf.vim'
- 	Plug 'scrooloose/nerdtree'
- 	Plug 'editorconfig/editorconfig-vim'
- 	Plug 'mileszs/ack.vim'
- 	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --rust-completer' }
- 	Plug 'tpope/vim-commentary'
-        Plug 'airblade/vim-gitgutter'
-        Plug 'tpope/vim-fugitive'
-        Plug 'junegunn/gv.vim'
- 	Plug 'vim-airline/vim-airline'
- 	Plug 'w0rp/ale'
- 	Plug 'morhetz/gruvbox'
- 	Plug 'tpope/vim-surround'
- 	Plug 'pangloss/vim-javascript'
- 	Plug 'mxw/vim-jsx'
-        Plug 'mhinz/vim-startify'
-        Plug 'mustache/vim-mustache-handlebars'
-        Plug 'ervandew/supertab'
-        Plug 'chr4/nginx.vim'
-        Plug 'OmniSharp/omnisharp-vim'
-        Plug 'jpalardy/vim-slime'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'tpope/vim-commentary'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/gv.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'w0rp/ale'
+  Plug 'morhetz/gruvbox'
+  Plug 'tpope/vim-surround'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  Plug 'mhinz/vim-startify'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'ervandew/supertab'
+  Plug 'chr4/nginx.vim'
+  Plug 'jpalardy/vim-slime'
+  Plug 'tpope/vim-sleuth'
+  Plug 'deoplete-plugins/deoplete-jedi'
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 syntax on
 :augroup numbertoggle
@@ -33,6 +43,7 @@ syntax on
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 :let mapleader = ","
+let g:deoplete#enable_at_startup = 1
 set nowrap
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set backspace=indent,eol,start
@@ -59,54 +70,77 @@ set diffopt+=vertical
 set hid
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
-"Moving between splits by ALT+Arrows
+
+"Moving between splits by ALT-Arrows
 nnoremap <A-Left> <C-w>h
 nnoremap <A-Down> <C-w>j
 nnoremap <A-Up> <C-w>k
 nnoremap <A-Right> <C-w>l
-"Split vertical ALT+d and horizontal ALT+D
+
+"Split vertical ALT-d and horizontal ALT+D
 nnoremap <A-d> <C-w>v
 nnoremap <A-D> <C-w>s
+
+"Alt-W close buffer 
 nnoremap <A-w> <Esc>:q<CR>
-map <C-L> 20zl " Scroll 20 characters to the right
-map <C-H> 20zh " Scroll 20 characters to the Left
-nmap <leader>l :NERDTreeFind<CR>
+
+" Scroll 20 characters to the left/right
+map <A-l> 20zl 
+map <A-h> 20zh
+
+" Leader 
 nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>l :NERDTreeFind<CR>
 nmap <leader>b :Buffers<CR>
-nmap <leader>f :Files<CR>
-nmap <leader>a :Ack!<space>
-nmap <leader>g :Ag<CR>
-nmap <leader>d :GdiffInTab<CR>
-nmap <leader>s :Gstatus<CR>
-nmap <leader>h :GV<CR>
-nmap <leader>hf :GV!<CR>
+nmap <leader>ff :Files<CR>
+nmap <leader>ack :Ack!<space>
+nmap <leader>ag :Ag<CR>
+nmap <leader>di :GdiffInTab<CR>
+nmap <leader>st :Gstatus<CR>
+
+" git HIstory
+nmap <leader>hi :GV<CR>
+
+" git HIstory for current File
+nmap <leader>hif :GV!<CR>
+
+" close tab
 nmap <leader>q :tabclose<CR>
-nmap <Tab> :Buffers<CRnmap <Tab> :Buffers<CR>>
+
+" clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
-nnoremap <F12> :YcmCompleter GoToDefinition<CR>
+
 " CTRL-j replace the word under cursor with current clipboard 
 :map <C-j> ciw<C-r>0<ESC>
-" if a PopUp Menu is visible then ESC close the menu and back to insert mode
-" inoremap <expr> <Esc> pumvisible() ? "\<Esc>a" : "\<Esc>"
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
+
+" Don't autoselect first autocomplete option; show options even if there is only one
+set completeopt=longest,menuone
+
 let g:ackprg = 'ag --nogroup --nocolor --column'
+" ALE
 let g:ale_fixers = {'javascript': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'cs': ['OmniSharp'] }
+
+" Theme
 colorscheme gruvbox
 set t_Co=256
 set background=dark
-" save the file (like w) as root
+
+" write down current buffer as root
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " Highlight ES6 template strings
 hi link javaScriptTemplateDelim String
 hi link javaScriptTemplateVar Text
 hi link javaScriptTemplateString String
+
 " URL Encode and Decode
-vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
-vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>ue :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>ud :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+
 command GdiffInTab tabedit %|Gdiff
-" Makes so that Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
+
+" Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
 function! s:ag_with_opts(arg, bang)
   let tokens  = split(a:arg)
   let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
@@ -115,47 +149,6 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
 
-" Escape special characters in a string for exact matching.
-" This is useful to copying strings from the file to the search tool
-function! EscapeString (string)
-  let string=a:string
-  " Escape regex characters
-  let string = escape(string, '^$.*\/~[]')
-  " Escape the line endings
-  let string = substitute(string, '\n', '\\n', 'g')
-  return string
-endfunction
-
-" Get the current visual block for search and replaces
-" This function passed the visual block through a string escape function
-function! GetVisual() range
-  " Save the current register and clipboard
-  let reg_save = getreg('"')
-  let regtype_save = getregtype('"')
-  let cb_save = &clipboard
-  set clipboard&
-
-  " Put the current visual selection in the " register
-  normal! ""gvy
-  let selection = getreg('"')
-
-  " Put the saved registers and clipboards back
-  call setreg('"', reg_save, regtype_save)
-  let &clipboard = cb_save
-
-  "Escape any special characters in the selection
-  let escaped_selection = EscapeString(selection)
-
-  return escaped_selection
-endfunction
-
-" Start the find and replace command across the entire file
-vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
-
-:set foldmethod=syntax
-let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_prefer_global_sln = 1
-
 " CTRL-C CTRL-C send current selection to a REPL on a terminal inside vim
 " to open a terminal inside vim type :terminal
 " you will be asked the jobid to identify the terminal
@@ -163,3 +156,43 @@ let g:OmniSharp_prefer_global_sln = 1
 let g:slime_target = "neovim"
 let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
 
+
+
+" supertab integration with omnisharp
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+" OmniSharp
+" use stdio instead of http
+let g:OmniSharp_server_stdio = 1
+
+" rename
+nnoremap <F2> :OmniSharpRename<CR>
+
+augroup omnisharp_commands
+  autocmd!
+  " Show type information automatically when the cursor stops moving
+  autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+  " Go To Definition / Implementation
+  autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+  autocmd FileType cs nnoremap <buffer> <Leader>gi :OmniSharpFindImplementations<CR>
+  
+  " Find symbol (use fzf)
+  autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+  
+  " Find usages
+  autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+  
+  " Move bwtween methods / classes 
+  autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+  autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+
+  " Find all code errors/warnings for the current solution and populate the quickfix window
+  autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+augroup END
+
+" Actions available based on position
+nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>

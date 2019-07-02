@@ -5,7 +5,7 @@ plugins=(git, docker)
 source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-
+export LANG=en_GB.UTF-8
 # show PWD as tab name instead of process name
 # (warning: some zsh theme doesn't work well with this configuration)
 DISABLE_AUTO_TITLE="true"

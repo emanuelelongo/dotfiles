@@ -1,6 +1,6 @@
 set -x VISUAL nvim
 set -x EDITOR "$VISUAL"
-
+set -x LANG en_GB.UTF-8
 # N - Node.js Version Manager
 set -x N_PREFIX $HOME/n
 
@@ -9,6 +9,7 @@ set -x GOPATH $HOME/go
 
 # Mono - .NET Framework
 set -x FrameworkPathOverride /Library/Frameworks/Mono.framework/Versions/5.4.1/lib/mono/4.5
+set -x DOTNET_CLI_UI_LANGUAGE en
 
 # PATH
 set -x PATH $HOME/bin
@@ -36,6 +37,7 @@ alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias elc="history | head -n 1 | vim"
 
 # Not shareable environment variables
 if test -e ~/.config/fish/confidential_env.fish

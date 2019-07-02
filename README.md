@@ -39,6 +39,8 @@ chsh -s /usr/local/bin/fish
 
 ## Basic tools
 ``` sh
+brew install bash
+brew install shellcheck
 brew install cmake
 brew install jq
 brew install httpie
@@ -62,7 +64,7 @@ curl -L https://git.io/n-install | bash
 
 and then install Yarn (--without-node options is mandatory)
 ``` sh
-brew install yarn --without-node
+brew install yarn --ignore-dependencies
 ```
 
 
@@ -102,7 +104,7 @@ pip3 install neovim
 Make neovim uses same configuration of vim
 ``` sh
 mkdir -p .config/nvim
-ln -s .vimrc .config/nvim/init.vim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 ```
 
 Let's `vim` opens __nvim__ and `vi` opens __vim__
