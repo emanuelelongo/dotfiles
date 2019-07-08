@@ -97,6 +97,8 @@ nmap <leader>ack :Ack!<space>
 nmap <leader>ag :Ag<CR>
 nmap <leader>di :GdiffInTab<CR>
 nmap <leader>st :Gstatus<CR>
+" replace the word under cursor with current clipboard 
+:nmap <leader>j ciw<C-r>0<ESC>
 
 " git HIstory
 nmap <leader>hi :GV<CR>
@@ -110,8 +112,6 @@ nmap <leader>q :tabclose<CR>
 " clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
 
-" CTRL-j replace the word under cursor with current clipboard 
-:map <C-j> ciw<C-r>0<ESC>
 
 " Don't autoselect first autocomplete option; show options even if there is only one
 set completeopt=longest,menuone
