@@ -71,11 +71,11 @@ set hid
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 
-"Moving between splits by ALT-Arrows
-nnoremap <A-Left> <C-w>h
-nnoremap <A-Down> <C-w>j
-nnoremap <A-Up> <C-w>k
-nnoremap <A-Right> <C-w>l
+" Moving between splits by ALT-hjkl
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 "Split vertical ALT-d and horizontal ALT+D
 nnoremap <A-d> <C-w>v
@@ -83,10 +83,6 @@ nnoremap <A-D> <C-w>s
 
 "Alt-W close buffer 
 nnoremap <A-w> <Esc>:q<CR>
-
-" Scroll 20 characters to the left/right
-map <A-l> 20zl 
-map <A-h> 20zh
 
 " Leader 
 nmap <leader>t :NERDTreeToggle<CR>
@@ -111,7 +107,6 @@ nmap <leader>q :tabclose<CR>
 
 " clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
-
 
 " Don't autoselect first autocomplete option; show options even if there is only one
 set completeopt=longest,menuone
@@ -149,14 +144,14 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
 
-" CTRL-C CTRL-C send current selection to a REPL on a terminal inside vim
-" to open a terminal inside vim type :terminal
-" you will be asked the jobid to identify the terminal
-" the jobid is the number shown in the section_b of airline
-let g:slime_target = "neovim"
-let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
-
-
+if has('nvim')
+  " CTRL-C CTRL-C send current selection to a REPL on a terminal inside vim
+  " to open a terminal inside vim type :terminal
+  " you will be asked the jobid to identify the terminal
+  " the jobid is the number shown in the section_b of airline
+  let g:slime_target = "neovim"
+  let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
+endif
 
 " supertab integration with omnisharp
 let g:SuperTabDefaultCompletionType = 'context'
@@ -198,3 +193,41 @@ augroup END
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
+
+" MacVim require some fix
+if has("gui_macvim")
+
+  set guifont=Monaco:h14
+  
+  " Moving between splits by ALT-hjkl
+  nnoremap ∆ <C-w>h
+  nnoremap ª <C-w>j
+  nnoremap º <C-w>k
+  nnoremap ¬ <C-w>l
+
+  "Split vertical ALT-d and horizontal ALT+D
+  noremap ∂ <C-w>v
+  nnoremap ˘ <C-w>s
+
+  function! GuiTabLabel()
+    return substitute( expand( '%:p' ), '.\+\/\(.\+\)\/.\+', '\1', '' )
+  endfunction
+  set guitablabel=%{GuiTabLabel()}
+
+
+  " Ctrl-Tab and Shift-Ctrl-Tab switch between open tabs
+  noremap <C-Tab> :tabnext<CR>
+  noremap <C-S-Tab> :tabprev<CR>
+
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+  noremap <D-9> :tabn 9<CR>
+endif
+
