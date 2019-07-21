@@ -38,6 +38,7 @@ alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias elc="history | head -n 1 | vim"
+alias k="kubectl --insecure-skip-tls-verify"
 
 # Not shareable environment variables
 if test -e ~/.config/fish/confidential_env.fish
