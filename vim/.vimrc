@@ -44,6 +44,8 @@ syntax on
 :augroup END
 :let mapleader = ","
 let g:deoplete#enable_at_startup = 1
+set list
+set listchars+=trail:•,eol:¬,tab:▸∙
 set nowrap
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set backspace=indent,eol,start

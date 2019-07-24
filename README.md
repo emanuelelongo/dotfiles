@@ -50,6 +50,7 @@ brew cask install osxfuse
 brew install sshfs
 brew install lynx
 brew install pandoc
+brew install highlight
 ```
 
 ## Docker
