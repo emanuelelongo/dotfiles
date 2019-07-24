@@ -34,6 +34,7 @@ set -x PATH $PATH /bin
 # Aliases
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
+alias hi="highlight"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
