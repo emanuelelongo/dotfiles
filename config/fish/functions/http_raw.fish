@@ -4,5 +4,5 @@ function http_raw
         echo "Usage: raw_http <request_file> <endpoint>"
         return
     end
-    (cat $argv[1]; sleep 1 ) | ncat $argv[2] 80
+    cat $argv[1]; sleep 1 | ncat $argv[2] 80
 end

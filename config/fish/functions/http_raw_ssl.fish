@@ -4,5 +4,5 @@ function http_raw_ssl
         echo "Usage: http_raw_ssl <request_file> <endpoint>"
         return
     end
-    (cat $argv[1]; sleep 1 ) | ncat --ssl $argv[2] 443
+    cat $argv[1]; sleep 1 | ncat --ssl $argv[2] 443
 end
