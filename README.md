@@ -79,6 +79,8 @@ curl https://sh.rustup.rs -sSf | sh
 brew install golang
 ```
 
+## C# Refactoring from Vim
+https://github.com/tinoji/Roslynator/blob/master/docs/RoslynatorForVisualStudioCode.md
 
 ## Dotfiles
 ``` sh

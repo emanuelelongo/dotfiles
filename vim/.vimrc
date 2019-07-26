@@ -193,6 +193,7 @@ augroup END
 
 " Actions available based on position
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
 
