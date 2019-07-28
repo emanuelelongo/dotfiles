@@ -110,6 +110,9 @@ nmap <leader>q :tabclose<CR>
 " clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
 
+" toggle scrollbind (remember to turn-on on each split)
+nmap <leader>sb :set scrollbind!<CR>
+
 " Don't autoselect first autocomplete option; show options even if there is only one
 set completeopt=longest,menuone
 
