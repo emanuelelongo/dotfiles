@@ -17,14 +17,16 @@ function precmd () {
 #aliases
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
+alias hi="highlight"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias k="kubectl --insecure-skip-tls-verify"
 
 # Custom functions
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
-function myip() { 
+function myip() {
 	ifconfig|grep netmask|awk '{print $2}';
 	curl -s https://ip.seeip.org/
 }
@@ -99,6 +101,7 @@ function http_poll() {
 
 # PATH
 export PATH=$HOME/bin
+export PATH=$PATH:$N_PREFIX/bin
 export PATH=$PATH:$HOME/.vimpkg/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.yarn/bin
@@ -120,9 +123,6 @@ export PATH=$PATH:/bin
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-# N - Node.Js Version Manager
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  
-
 # Mono - .NET Framework
 export FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/5.4.1/lib/mono/4.5
 
@@ -143,6 +143,8 @@ _dotnet_zsh_complete()
   reply=( "${(ps:\n:)completions}" )
 }
 compctl -K _dotnet_zsh_complete dotnet
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Completion for minikube and kubectl
 source <(minikube completion zsh)

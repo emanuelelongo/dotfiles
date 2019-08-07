@@ -21,7 +21,7 @@ chsh -s /bin/zsh
 
 ```
 
-## Fish Shell and Oh-My-Fish
+## ~~Fish Shell and Oh-My-Fish~~
 Install Fish shell and Oh-My-Fish:
 ``` sh
 brew install fish
@@ -35,11 +35,14 @@ rm -rf ~/.config/omf
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
 # If I'm in fish mood
 chsh -s /usr/local/bin/fish
+# If I'm in zsh mood
+chsh -s /bin/zsh
 ```
 
 ## Basic tools
 ``` sh
 brew install bash
+brew install zsh-syntax-highlighting
 brew install shellcheck
 brew install cmake
 brew install jq

@@ -41,6 +41,12 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias elc="history | head -n 1 | vim"
 alias k="kubectl --insecure-skip-tls-verify"
 
+
+# FZF - Fuzzy Search 
+set -x FZF_DEFAULT_COMMAND 'fd --type f'
+set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -x FZF_CTRL_T_OPTS "--preview 'head -100 {}'"
+
 # Not shareable environment variables
 if test -e ~/.config/fish/confidential_env.fish
     source ~/.config/fish/confidential_env.fish
