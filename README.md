@@ -13,11 +13,21 @@ Install from [here](https://www.iterm2.com/)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+## Nerd Font (so that iTerm2 prompt looks good)
+```
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+```
+
+
 ## Oh-My-Zsh
 ``` sh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # If I'm in zsh mood
 chsh -s /bin/zsh
+
+# A better prompt for zsh
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 ```
 
