@@ -1,7 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git, docker)
 source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -146,8 +145,7 @@ compctl -K _dotnet_zsh_complete dotnet
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Completion for minikube and kubectl
-source <(minikube completion zsh)
+# Completion for kubectl
 source <(kubectl completion zsh)
 
 # powerlevel10k: to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
