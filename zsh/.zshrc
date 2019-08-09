@@ -98,6 +98,9 @@ function http_poll() {
     done
 }
 
+# N - Node.js Version Manager
+export N_PREFIX=$HOME/n
+
 # PATH
 export PATH=$HOME/bin
 export PATH=$PATH:$N_PREFIX/bin
