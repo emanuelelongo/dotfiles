@@ -16,7 +16,7 @@ function precmd () {
 #aliases
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
-alias hi="highlight"
+alias hi="highlight --out-format=xterm256"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
