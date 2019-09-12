@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'deoplete-plugins/deoplete-jedi'
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'OmniSharp/omnisharp-vim'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 syntax on
 :augroup numbertoggle
@@ -193,6 +194,10 @@ augroup omnisharp_commands
   " Find all code errors/warnings for the current solution and populate the quickfix window
   autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
 augroup END
+
+" Go Development
+nmap <leader>gor :GoRun<CR>
+nmap <leader>gob :GoBuild<CR>
 
 " Actions available based on position
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
