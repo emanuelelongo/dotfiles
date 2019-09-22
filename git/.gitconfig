@@ -15,6 +15,7 @@
 	hs = log --follow -p
         files = diff-tree -r --name-only -no-commit-it
         puff = pull --ff-only	
+	cane = commit --amend --no-edit
     	sync = "!git fetch -p && git remote prune origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
     	ba = "! for branch in `git branch -r | grep -v HEAD`;do echo `git show --pretty=format:\"%Cred %cn %>|(40) %Cblue %ar %>|(80) %Creset\" $branch | head -n 1` $branch; done | sort -r"
 

@@ -64,21 +64,22 @@ function http_ok() {
 }
 
 function http_raw() {
-    if [ "$#" -ne 2 ]; then
+
+    if [ "$#" -lt 2 ]; then
         echo "Send raw http request\n"
-        echo "Usage: raw_http <request_file> <endpoint>"
+        echo "Usage: raw_http <request_file> <endpoint> [port]"
         return
     fi
-    (cat $1; sleep 1 ) | ncat $2 80
+    (cat $1; sleep 1 ) | ncat $2 ${3:=80}
 }
 
 function http_raw_ssl() {
-    if [ "$#" -ne 2 ]; then
+    if [ "$#" -lt 2 ]; then
         echo "Send raw http request through ssl\n"
-        echo "Usage: http_raw_ssl <request_file> <endpoint>"
+        echo "Usage: http_raw_ssl <request_file> <endpoint> [port]"
         return
     fi
-    (cat $1; sleep 1 ) | ncat --ssl $2 443
+    (cat $1; sleep 1 ) | ncat --ssl $2 ${3:=443}
 }
 
 function http_poll() {
