@@ -792,9 +792,13 @@
 	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideActivityIndicator</key>
+	<false/>
 	<key>HideScrollbar</key>
 	<true/>
 	<key>HideTab</key>
+	<true/>
+	<key>HideTabNumber</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
@@ -860,7 +864,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>360 711 1018 447 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-138 1200 1920 1177 -138 1200 1920 1177 </string>
+	<string>-134 1205 1920 1161 -138 1200 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1 40 1920 1136 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1594,8 +1598,6 @@
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>base: compression resistance</key>
-								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
 								<key>shared text color</key>
@@ -1603,13 +1605,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.63</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.63</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1664,8 +1666,6 @@
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>base: compression resistance</key>
-								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
 								<key>shared text color</key>
@@ -1673,13 +1673,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.63</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.87545454545454549</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1734,8 +1734,6 @@
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>base: compression resistance</key>
-								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
 								<key>shared text color</key>
@@ -1743,13 +1741,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.67909090909090908</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.63</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1819,13 +1817,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.82636363636363619</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.63</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1880,8 +1878,10 @@
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>base: compression resistance</key>
+								<key>ShowPercentage</key>
 								<integer>1</integer>
+								<key>ShowTime</key>
+								<integer>0</integer>
 								<key>base: priority</key>
 								<real>5</real>
 								<key>shared text color</key>
@@ -1889,13 +1889,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.63</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.72818181818181837</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1956,18 +1956,20 @@
 								<real>5</real>
 								<key>format</key>
 								<string>M/dd h:mm</string>
+								<key>localize</key>
+								<integer>1</integer>
 								<key>shared text color</key>
 								<dict>
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.77727272727272689</real>
+									<real>1</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.63</real>
+									<real>1</real>
 									<key>Red Component</key>
-									<real>0.90000000000000002</real>
+									<real>1</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2017,6 +2019,7 @@
 		<string>3.2.9</string>
 		<string>3.3.1</string>
 		<string>3.3.0</string>
+		<string>3.3.3</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -2027,7 +2030,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1200}}</string>
 		<key>topLeft</key>
-		<string>{461, 850}</string>
+		<string>{236, 934}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2036,7 +2039,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A6643ACB-8D3F-401A-9F35-77826498209D</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>13</integer>
+	<integer>14</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2745,6 +2748,11 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncSearchHistory2</key>
+	<array>
+		<string>10:</string>
+		<string>custom</string>
+	</array>
 	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -2788,6 +2796,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>~/.iterm2</string>
+	<key>PreserveWindowSizeWhenTabBarVisibilityChanges</key>
+	<false/>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -2799,7 +2809,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-09-04T16:23:17Z</date>
+	<date>2019-09-20T13:16:37Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -2807,7 +2817,9 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
+	<key>ShowNewOutputIndicator</key>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
@@ -2822,6 +2834,8 @@
 	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>1</integer>
+	<key>TabsHaveCloseButton</key>
+	<true/>
 	<key>UseBorder</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
@@ -2833,7 +2847,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.2</string>
+	<string>3.3.3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

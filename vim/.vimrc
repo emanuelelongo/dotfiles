@@ -194,15 +194,17 @@ augroup omnisharp_commands
 
   " Find all code errors/warnings for the current solution and populate the quickfix window
   autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+
+  " Actions available based on position
+  autocmd FileType cs nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+  autocmd FileType cs xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 augroup END
 
 " Go Development
 nmap <leader>gor :GoRun<CR>
 nmap <leader>gob :GoBuild<CR>
 
-" Actions available based on position
-nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
 
