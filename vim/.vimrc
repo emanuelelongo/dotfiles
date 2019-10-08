@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sleuth'
   Plug 'deoplete-plugins/deoplete-jedi'
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'OmniSharp/omnisharp-vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()

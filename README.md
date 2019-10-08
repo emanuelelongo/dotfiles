@@ -23,30 +23,16 @@ brew cask install font-hack-nerd-font
 ## Oh-My-Zsh
 ``` sh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# If I'm in zsh mood
 chsh -s /bin/zsh
 
 # A better prompt for zsh
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-```
+# Syntax highlighting for zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-## ~~Fish Shell and Oh-My-Fish~~
-Install Fish shell and Oh-My-Fish:
-``` sh
-brew install fish
-curl -L https://get.oh-my.fish | fish
-```
-
-remove their configuration files so that **Stow** can link them
-```
-rm -rf ~/.config/fish
-rm -rf ~/.config/omf
-echo /usr/local/bin/fish | sudo tee -a /etc/shells
-# If I'm in fish mood
-chsh -s /usr/local/bin/fish
-# If I'm in zsh mood
-chsh -s /bin/zsh
+# Autocompletion for zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 ## Basic tools

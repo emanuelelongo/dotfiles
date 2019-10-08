@@ -1,3 +1,5 @@
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -151,8 +153,6 @@ _dotnet_zsh_complete()
   reply=( "${(ps:\n:)completions}" )
 }
 compctl -K _dotnet_zsh_complete dotnet
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Completion for kubectl
 source <(kubectl completion zsh)
