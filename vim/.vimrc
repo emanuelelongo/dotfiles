@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/gv.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'w0rp/ale'
-  Plug 'morhetz/gruvbox'
+  Plug 'ayu-theme/ayu-vim'
   Plug 'tpope/vim-surround'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
@@ -125,9 +125,9 @@ let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_linters = {'javascript': ['eslint'], 'cs': ['OmniSharp'] }
 
 " Theme
-colorscheme gruvbox
-set t_Co=256
-set background=dark
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 
 " write down current buffer as root
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
