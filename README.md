@@ -25,7 +25,7 @@ The system installed zsh is usually outdated and cannot be updated.
 Install the new new one with brew and add the new one to the available shells.
 ``` sh
 brew install zsh
-sudo echo "/usr/local/bin/zsh" >> /etc/shells
+echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 exit
 ```
