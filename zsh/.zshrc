@@ -143,6 +143,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+### Temporary Fix: removed forward-char from list (pasting issue)
+export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-forward-char vi-end-of-line vi-add-eol)
+
 ### Go - Go Language ###
 export GOPATH=$HOME/go
 
@@ -162,3 +165,4 @@ source <(kubectl completion zsh)
 ### SHELL PROMPT ###
 # powerlevel10k: to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
+
