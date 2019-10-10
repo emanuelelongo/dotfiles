@@ -1,4 +1,9 @@
-plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+  docker
+  docker-compose
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 export ZSH=$HOME/.oh-my-zsh
 export REPOS=$HOME/repos
@@ -15,7 +20,7 @@ function precmd () {
   echo -ne "$window_title"
 }
 
-#aliases
+### ALIASES ###
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
 alias hi="highlight --out-format=xterm256"
@@ -24,7 +29,7 @@ alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias k="kubectl --insecure-skip-tls-verify"
 
-# Custom functions
+### FUNCTIONS ###
 function mkcd() { mkdir -p "$@" && cd "$_"; }
 
 function myip() {
@@ -106,10 +111,10 @@ function auto_goseq() {
   # echo $1 | entr -p -c -s "goseq -o $1.svg $1 && osascript -e 'tell application \"Firefox\" to activate' -e 'tell application \"System Events\"' -e 'keystroke \"r\" using command down' -e 'end tell'"
 }
 
-# N - Node.js Version Manager
+### N - Node.js Version Manager ###
 export N_PREFIX=$HOME/n
 
-# PATH
+### PATH ###
 export PATH=$HOME/bin
 export PATH=$PATH:$N_PREFIX/bin
 export PATH=$PATH:$HOME/.vimpkg/bin
@@ -129,23 +134,20 @@ export PATH=$PATH:/usr/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/bin
 
-# load autocompletions
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-
-# Mono - .NET Framework
+### Mono - .NET Framework ###
 export FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/5.4.1/lib/mono/4.5
 
-# FZF - Fuzzy Search 
+### FZF - Fuzzy Search ###
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Go - Go Language
+### Go - Go Language ###
 export GOPATH=$HOME/go
 
-# Completion for the dotnet CLI
+### COMPLETIONS ###
+# Completion for the dotnet CLI #
 _dotnet_zsh_complete() 
 {
   local completions=("$(dotnet complete "$words")")
@@ -157,5 +159,6 @@ compctl -K _dotnet_zsh_complete dotnet
 # Completion for kubectl
 source <(kubectl completion zsh)
 
+### SHELL PROMPT ###
 # powerlevel10k: to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh

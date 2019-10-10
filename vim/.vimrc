@@ -96,7 +96,7 @@ nmap <leader>b :Buffers<CR>
 nmap <leader>ff :Files<CR>
 nmap <leader>ack :Ack!<space>
 nmap <leader>ag :Ag<CR>
-nmap <leader>di :GdiffInTab<CR>
+nmap <leader>di :Gdiffsplit<CR>
 nmap <leader>st :Gstatus<CR>
 " replace the word under cursor with current clipboard 
 :nmap <leader>j ciw<C-r>0<ESC>
@@ -140,8 +140,6 @@ hi link javaScriptTemplateString String
 " URL Encode and Decode
 vnoremap <leader>ue :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>ud :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
-
-command GdiffInTab tabedit %|Gdiff
 
 " Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
 function! s:ag_with_opts(arg, bang)

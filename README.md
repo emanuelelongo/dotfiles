@@ -20,10 +20,18 @@ brew cask install font-hack-nerd-font
 ```
 
 
-## Oh-My-Zsh
+## Zsh and Oh-My-Zsh
+The system installed zsh is usually outdated and cannot be updated.
+Install the new new one with brew and add the new one to the available shells.
+``` sh
+brew install zsh
+sudo echo "/usr/local/bin/zsh" >> /etc/shells
+chsh -s /usr/local/bin/zsh
+exit
+```
+Oh-My-Zsh
 ``` sh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s /bin/zsh
 
 # A better prompt for zsh
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -38,7 +46,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ## Basic tools
 ``` sh
 brew install bash
-brew install zsh-syntax-highlighting
 brew install shellcheck
 brew install cmake
 brew install jq
