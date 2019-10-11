@@ -20,6 +20,13 @@ function precmd () {
   echo -ne "$window_title"
 }
 
+### KEY BINDINGS ###
+# ALT + Left Arrow
+bindkey "[D" backward-word
+# ALT + Right Arrow
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
 ### ALIASES ###
 alias sz="pv -b > /dev/null"
 alias pj="pbpaste | sed -E 's/new\ Date[(]([0-9]*)[)]/\"\1\"/g' | jq '.'"
@@ -143,8 +150,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-### Temporary Fix: removed forward-char from list (pasting issue)
+
+### SUGGESTION (zsh-users/zsh-autosuggestions)
+# Temporary Fix: removed forward-char from list (pasting issue)
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-forward-char vi-end-of-line vi-add-eol)
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 ### Go - Go Language ###
 export GOPATH=$HOME/go
