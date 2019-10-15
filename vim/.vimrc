@@ -99,7 +99,7 @@ nmap <leader>ag :Ag<CR>
 nmap <leader>di :Gdiffsplit<CR>
 nmap <leader>st :Gstatus<CR>
 " replace the word under cursor with current clipboard 
-:nmap <leader>j ciw<C-r>0<ESC>
+:nmap <leader>r ciw<C-r>0<ESC>
 
 " git HIstory
 nmap <leader>hi :GV<CR>
@@ -137,9 +137,12 @@ hi link javaScriptTemplateDelim String
 hi link javaScriptTemplateVar Text
 hi link javaScriptTemplateString String
 
-" URL Encode and Decode
-vnoremap <leader>ue :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
-vnoremap <leader>ud :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+" URL Encode and Decode selected text
+vnoremap <leader>ue :%!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>ud :%!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+
+" JSON format selected text
+vnoremap <leader>j :%!jq .<cr>
 
 " Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
 function! s:ag_with_opts(arg, bang)
