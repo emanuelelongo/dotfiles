@@ -154,7 +154,7 @@ export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 ### SUGGESTION (zsh-users/zsh-autosuggestions)
 # Temporary Fix: removed forward-char from list (pasting issue)
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-forward-char vi-end-of-line vi-add-eol)
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 ### Go - Go Language ###
 export GOPATH=$HOME/go
