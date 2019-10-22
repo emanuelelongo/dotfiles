@@ -4,6 +4,13 @@ If you made an OS clean install (shame on you) this is what you need to install/
 
 The list is not complete so, for your own sake, please remember to add or fix things.
 
+## Disable system `/cores` dumps
+The `/cores` folder can be safely deleted.
+
+``` sh
+sudo launchctl limit core 0 0
+```
+
 ## iTerm2
 Install from [here](https://www.iterm2.com/)
 

@@ -129,9 +129,6 @@ set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
 
-" write down current buffer as root
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
 " Highlight ES6 template strings
 hi link javaScriptTemplateDelim String
 hi link javaScriptTemplateVar Text
