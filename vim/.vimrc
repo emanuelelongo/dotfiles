@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'OmniSharp/omnisharp-vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'tpope/vim-abolish'
 call plug#end()
 syntax on
 :augroup numbertoggle
