@@ -4,13 +4,6 @@
 " and then
 " :UpdateRemotePlugins
 call plug#begin('~/.vim/plugged')
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'scrooloose/nerdtree'
@@ -21,23 +14,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'vim-airline/vim-airline'
-  Plug 'w0rp/ale'
   Plug 'ayu-theme/ayu-vim'
   Plug 'tpope/vim-surround'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'mhinz/vim-startify'
   Plug 'mustache/vim-mustache-handlebars'
-  Plug 'ervandew/supertab'
   Plug 'chr4/nginx.vim'
   Plug 'jpalardy/vim-slime'
   Plug 'tpope/vim-sleuth'
-  Plug 'deoplete-plugins/deoplete-jedi'
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'OmniSharp/omnisharp-vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'tpope/vim-abolish'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 syntax on
 :augroup numbertoggle
@@ -46,7 +34,7 @@ syntax on
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 :let mapleader = ","
-let g:deoplete#enable_at_startup = 1
+set hidden
 set list
 set listchars+=trail:•,eol:¬,tab:▸∙
 set nowrap
@@ -64,7 +52,7 @@ set history=1000
 set undolevels=1000
 set encoding=utf-8
 set nobackup
-set backupcopy=yes
+set nowritebackup
 set noswapfile
 set mouse=a
 set showcmd
@@ -73,9 +61,13 @@ set noerrorbells
 set clipboard=unnamed
 set autoread
 set diffopt+=vertical
-set hid
+set cmdheight=2
+set signcolumn=yes
+set shortmess+=c
+
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
+let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
 
 " Moving between splits by ALT-hjkl
 nnoremap <A-h> <C-w>h
@@ -108,9 +100,6 @@ nmap <leader>hi :GV<CR>
 " git HIstory for current File
 nmap <leader>hif :GV!<CR>
 
-" close tab
-nmap <leader>q :tabclose<CR>
-
 " clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
 
@@ -121,9 +110,6 @@ nmap <leader>sb :set scrollbind!<CR>
 set completeopt=longest,menuone
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-" ALE
-let g:ale_fixers = {'javascript': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint'], 'cs': ['OmniSharp'] }
 
 " Theme
 set termguicolors
@@ -195,88 +181,68 @@ if has('nvim')
   let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
 endif
 
-" supertab integration with omnisharp
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
-let g:SuperTabClosePreviewOnPopupClose = 1
+" COC
+" GOTO shortcuts
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" OmniSharp
-" use stdio instead of http
-let g:OmniSharp_server_stdio = 1
+" CTRL-SPACE to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-" rename
-nnoremap <F2> :OmniSharpRename<CR>
+" TAB for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-augroup omnisharp_commands
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" K to show documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" F2 to rename
+nmap <F2> <Plug>(coc-rename)
+
+" Overwrite default formatting for selected text
+xmap = <Plug>(coc-format-selected)
+nmap = <Plug>(coc-format-selected)
+
+augroup mygroup
   autocmd!
-  " Show type information automatically when the cursor stops moving
-  autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder ???
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
-  " Go To Definition / Implementation
-  autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-  autocmd FileType cs nnoremap <buffer> <Leader>gi :OmniSharpFindImplementations<CR>
-  
-  " Find symbol (use fzf)
-  autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-  
-  " Find usages
-  autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-  
-  " Move bwtween methods / classes 
-  autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
-  autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
-  " Find all code errors/warnings for the current solution and populate the quickfix window
-  autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+" CodeAction
+nmap <leader><space> <Plug>(coc-codeaction)
+xmap <leader><space> <Plug>(coc-codeaction-selected)
 
-  " Actions available based on position
-  autocmd FileType cs nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-  autocmd FileType cs xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
-augroup END
+" AutoFix problem of current line
+nmap <F3> <Plug>(coc-fix-current)
+
+" CTRL-d progressive selection range
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Go Development
 nmap <leader>gor :GoRun<CR>
 nmap <leader>gob :GoBuild<CR>
-
-
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
-
-" MacVim require some fix
-if has("gui_macvim")
-
-  set guifont=Monaco:h14
-  
-  " Moving between splits by ALT-hjkl
-  nnoremap ∆ <C-w>h
-  nnoremap ª <C-w>j
-  nnoremap º <C-w>k
-  nnoremap ¬ <C-w>l
-
-  "Split vertical ALT-d and horizontal ALT+D
-  noremap ∂ <C-w>v
-  nnoremap ˘ <C-w>s
-
-  function! GuiTabLabel()
-    return substitute( expand( '%:p' ), '.\+\/\(.\+\)\/.\+', '\1', '' )
-  endfunction
-  set guitablabel=%{GuiTabLabel()}
-
-
-  " Ctrl-Tab and Shift-Ctrl-Tab switch between open tabs
-  noremap <C-Tab> :tabnext<CR>
-  noremap <C-S-Tab> :tabprev<CR>
-
-  " Switch to specific tab numbers with Command-number
-  noremap <D-1> :tabn 1<CR>
-  noremap <D-2> :tabn 2<CR>
-  noremap <D-3> :tabn 3<CR>
-  noremap <D-4> :tabn 4<CR>
-  noremap <D-5> :tabn 5<CR>
-  noremap <D-6> :tabn 6<CR>
-  noremap <D-7> :tabn 7<CR>
-  noremap <D-8> :tabn 8<CR>
-  noremap <D-9> :tabn 9<CR>
-endif
-
