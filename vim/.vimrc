@@ -1,8 +1,3 @@
-" Note to self: next time you install a new Python version, please remember to
-"
-" pip3 install --upgrade neovim
-" and then
-" :UpdateRemotePlugins
 call plug#begin('~/.vim/plugged')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
@@ -17,13 +12,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'ayu-theme/ayu-vim'
   Plug 'tpope/vim-surround'
   Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
+  Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'mhinz/vim-startify'
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'chr4/nginx.vim'
   Plug 'jpalardy/vim-slime'
   Plug 'tpope/vim-sleuth'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'tpope/vim-abolish'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -35,8 +29,11 @@ syntax on
 :augroup END
 :let mapleader = ","
 set hidden
+
+" make trailing spaces, eol and tabs visible
 set list
 set listchars+=trail:•,eol:¬,tab:▸∙
+
 set nowrap
 au BufRead,BufNewFile *.md setlocal textwidth=80
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -64,6 +61,8 @@ set diffopt+=vertical
 set cmdheight=2
 set signcolumn=yes
 set shortmess+=c
+" Don't autoselect first autocomplete option; show options even if there is only one
+set completeopt=longest,menuone
 
 " -- NERDTree --
 "
@@ -71,6 +70,8 @@ let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>l :NERDTreeFind<CR>
+
+" -- SPLITS
 
 "ALT-d / ALT-D split vertical / horizontal
 nnoremap <A-d> <C-w>v
@@ -84,21 +85,31 @@ nnoremap <A-right> <C-w>l
 
 " -- FILES --
 "
+" Show open files
 nmap <leader>b :Buffers<CR>
+" Fuzzy search file names
 nmap <leader>ff :Files<CR>
+" Fuzy search text in files
 nmap <leader>ag :Ag<CR>
-" let g:ackprg = 'ag --nogroup --nocolor --column'
+" Make :Ack use ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
+function! s:ag_with_opts(arg, bang)
+  let tokens  = split(a:arg)
+  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
+  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+endfunction
+autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
+
 
 " -- EDITING --
 "
-" clear Highlights on enter
+" Clear highlights when enter pressed
 nnoremap <CR> :noh<CR><CR>
 
-" replace the word under cursor with current clipboard 
+" Replace the word under cursor with current clipboard 
 :nmap <leader>r ciw<C-r>0<ESC>
-
-" toggle scrollbind (remember to turn-on on each split)
-nmap <leader>sb :set scrollbind!<CR>
 
 " URL Encode and Decode selected text
 vnoremap <leader>ue :%!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
@@ -109,26 +120,21 @@ vnoremap <leader>j :%!jq .<cr>
 
 " -- GIT --
 "
+" git diff of current file
 nmap <leader>di :Gdiffsplit<CR>
+" git status
 nmap <leader>st :Gstatus<CR>
-nmap <leader>hif :GV!<CR>
+" git log
 nmap <leader>hi :GV<CR>
+" git log of current file
+nmap <leader>hif :GV!<CR>
 
 
-" Don't autoselect first autocomplete option; show options even if there is only one
-set completeopt=longest,menuone
-
-
-" -- Theme --
+" -- THEME --
+"
 set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
-
-
-" Highlight ES6 template strings
-hi link javaScriptTemplateDelim String
-hi link javaScriptTemplateVar Text
-hi link javaScriptTemplateString String
 
 
 " FZF Floating
@@ -141,8 +147,6 @@ if has('nvim')
     let width = float2nr(&columns - (&columns * 2 / 10))
     let col = float2nr((&columns - width) / 2)
 
-    "Set the position, size, etc. of the floating window.
-    "The size configuration here may not be so flexible, and there's room for further improvement.
     let opts = {
           \ 'relative': 'editor',
           \ 'row': height * 0.3,
@@ -167,15 +171,8 @@ if has('nvim')
   endfunction
 end
 
-" Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
-function! s:ag_with_opts(arg, bang)
-  let tokens  = split(a:arg)
-  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
-endfunction
-autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
-
+" -- REPL --
+"
 if has('nvim')
   " CTRL-C CTRL-C send current selection to a REPL on a terminal inside vim
   " to open a terminal inside vim type :terminal
@@ -185,7 +182,8 @@ if has('nvim')
   let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
 endif
 
-" COC
+" -- COC --
+"
 let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
 
 " GOTO shortcuts
@@ -227,11 +225,11 @@ nmap <F2> <Plug>(coc-rename)
 xmap = <Plug>(coc-format-selected)
 nmap = <Plug>(coc-format-selected)
 
-augroup mygroup
+augroup cocstuffs
   autocmd!
-  " Setup formatexpr specified filetype(s).
+  " use coc to format javascript, typescript and json
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder ???
+  " Update signature help on jump placeholder (wtf ???)
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
@@ -249,6 +247,3 @@ nmap <F3> <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-range-select)
 xmap <silent> <C-d> <Plug>(coc-range-select)
 
-" Go Development
-nmap <leader>gor :GoRun<CR>
-nmap <leader>gob :GoBuild<CR>
