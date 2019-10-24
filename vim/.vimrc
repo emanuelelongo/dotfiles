@@ -65,61 +65,40 @@ set cmdheight=2
 set signcolumn=yes
 set shortmess+=c
 
+" -- NERDTree --
+"
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
-let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
+nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>l :NERDTreeFind<CR>
 
-" Moving between splits by ALT-hjkl
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-"Split vertical ALT-d and horizontal ALT+D
+"ALT-d / ALT-D split vertical / horizontal
 nnoremap <A-d> <C-w>v
 nnoremap <A-D> <C-w>s
 
-"Alt-W close buffer 
-nnoremap <A-w> <Esc>:q<CR>
+" ALT-[arrows] move between splits
+nnoremap <A-left> <C-w>h
+nnoremap <A-down> <C-w>j
+nnoremap <A-up> <C-w>k
+nnoremap <A-right> <C-w>l
 
-" Leader 
-nmap <leader>t :NERDTreeToggle<CR>
-nmap <leader>l :NERDTreeFind<CR>
+" -- FILES --
+"
 nmap <leader>b :Buffers<CR>
 nmap <leader>ff :Files<CR>
-nmap <leader>ack :Ack!<space>
 nmap <leader>ag :Ag<CR>
-nmap <leader>di :Gdiffsplit<CR>
-nmap <leader>st :Gstatus<CR>
-" replace the word under cursor with current clipboard 
-:nmap <leader>r ciw<C-r>0<ESC>
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" git HIstory
-nmap <leader>hi :GV<CR>
-
-" git HIstory for current File
-nmap <leader>hif :GV!<CR>
-
+" -- EDITING --
+"
 " clear Highlights on enter
 nnoremap <CR> :noh<CR><CR>
 
+" replace the word under cursor with current clipboard 
+:nmap <leader>r ciw<C-r>0<ESC>
+
 " toggle scrollbind (remember to turn-on on each split)
 nmap <leader>sb :set scrollbind!<CR>
-
-" Don't autoselect first autocomplete option; show options even if there is only one
-set completeopt=longest,menuone
-
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" Theme
-set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
-
-" Highlight ES6 template strings
-hi link javaScriptTemplateDelim String
-hi link javaScriptTemplateVar Text
-hi link javaScriptTemplateString String
 
 " URL Encode and Decode selected text
 vnoremap <leader>ue :%!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
@@ -128,6 +107,31 @@ vnoremap <leader>ud :%!python -c 'import sys,urllib;print urllib.unquote(sys.std
 " JSON format selected text
 vnoremap <leader>j :%!jq .<cr>
 
+" -- GIT --
+"
+nmap <leader>di :Gdiffsplit<CR>
+nmap <leader>st :Gstatus<CR>
+nmap <leader>hif :GV!<CR>
+nmap <leader>hi :GV<CR>
+
+
+" Don't autoselect first autocomplete option; show options even if there is only one
+set completeopt=longest,menuone
+
+
+" -- Theme --
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
+
+
+" Highlight ES6 template strings
+hi link javaScriptTemplateDelim String
+hi link javaScriptTemplateVar Text
+hi link javaScriptTemplateString String
+
+
+" FZF Floating
 if has('nvim')
   let $FZF_DEFAULT_OPTS='--layout=reverse'
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
@@ -182,6 +186,8 @@ if has('nvim')
 endif
 
 " COC
+let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
+
 " GOTO shortcuts
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
