@@ -153,5 +153,5 @@ Then from vim and neovim run:
 ``` sh
 brew install fzf
 $(brew --prefix)/opt/fzf/install
-brew install ag
+brew install ripgrep
 ```

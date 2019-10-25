@@ -1,9 +1,6 @@
 call plug#begin('~/.vim/plugged')
-  Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-commentary'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
@@ -69,7 +66,7 @@ set completeopt=longest,menuone
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 nmap <leader>t :NERDTreeToggle<CR>
-nmap <leader>l :NERDTreeFind<CR>
+nmap <leader>T :NERDTreeFind<CR>
 
 " -- SPLITS
 
@@ -85,23 +82,16 @@ nnoremap <A-right> <C-w>l
 
 " -- FILES --
 "
-" Show open files
-nmap <leader>b :Buffers<CR>
+" List open buffers
+nmap <leader>lb :CocList buffers<CR>
 " Fuzzy search file names
-nmap <leader>ff :Files<CR>
-" Fuzy search text in files
-nmap <leader>ag :Ag<CR>
-" Make :Ack use ag
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" Makes Ag accepts arguments (ex: find in js: Ag -G'\.js$' textToSearch)
-function! s:ag_with_opts(arg, bang)
-  let tokens  = split(a:arg)
-  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
-endfunction
-autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
-
+nmap <leader>lf :CocList files<CR>
+" Fuzzy search text in files
+nmap <leader>lg :CocList grep<CR>
+" Fuzzy search lines in current file
+nmap <leader>ll :CocList lines<CR>
+" Fuzzy search in searchhistory
+nmap <leader>ls :CocList searchhistory<CR>
 
 " -- EDITING --
 "
@@ -136,41 +126,6 @@ set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
 
-
-" FZF Floating
-if has('nvim')
-  let $FZF_DEFAULT_OPTS='--layout=reverse'
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-  function! FloatingFZF()
-    let height = &lines - 3
-    let width = float2nr(&columns - (&columns * 2 / 10))
-    let col = float2nr((&columns - width) / 2)
-
-    let opts = {
-          \ 'relative': 'editor',
-          \ 'row': height * 0.3,
-          \ 'col': col + 30,
-          \ 'width': width * 2 / 3,
-          \ 'height': height / 2
-          \ }
-
-    let buf = nvim_create_buf(v:false, v:true)
-    let win = nvim_open_win(buf, v:true, opts)
-
-    "Set Floating Window Highlighting
-    call setwinvar(win, '&winhl', 'Normal:Pmenu')
-
-    setlocal
-          \ buftype=nofile
-          \ nobuflisted
-          \ bufhidden=hide
-          \ nonumber
-          \ norelativenumber
-          \ signcolumn=no
-  endfunction
-end
-
 " -- REPL --
 "
 if has('nvim')
@@ -182,7 +137,7 @@ if has('nvim')
   let g:airline_section_b = '%{exists("b:terminal_job_id")?b:terminal_job_id: ""}'
 endif
 
-" -- COC --
+" -- CODING --
 "
 let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
 
