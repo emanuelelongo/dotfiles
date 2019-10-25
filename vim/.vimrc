@@ -71,7 +71,12 @@ let NERDTreeShowLineNumbers=1
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>T :NERDTreeFind<CR>
 
-" -- SPLITS
+" SPLITS:
+" Rationale
+" Splitting and moving between splits is a mildly frequent operation so the
+" shortcuts has to be fast to type (single keypress).
+" However they are operations that changes the working context so it is
+" acceptable to use a far away key to activate them (ALT).
 
 "ALT-d / ALT-D split vertical / horizontal
 nnoremap <A-d> <C-w>v
