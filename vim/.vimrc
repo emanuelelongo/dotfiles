@@ -18,6 +18,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-abolish'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint', 'coc-lists' ]
+
 syntax on
 :augroup numbertoggle
 :  autocmd!
@@ -82,13 +85,13 @@ nnoremap <A-right> <C-w>l
 
 " -- FILES --
 "
-" List open buffers
-nmap <leader>lb :CocList buffers<CR>
+" Show open buffers
+nmap <leader>b :CocList buffers<CR>
 " Fuzzy search file names
 nmap <leader>lf :CocList files<CR>
-" Fuzzy search text in files
+" Fuzzy grep in files
 nmap <leader>lg :CocList grep<CR>
-" Fuzzy search lines in current file
+" Fuzzy search Lines in current file
 nmap <leader>ll :CocList lines<CR>
 " Fuzzy search in searchhistory
 nmap <leader>ls :CocList searchhistory<CR>
@@ -139,7 +142,6 @@ endif
 
 " -- CODING --
 "
-let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint' ]
 
 " GOTO shortcuts
 nmap <silent> gd <Plug>(coc-definition)
