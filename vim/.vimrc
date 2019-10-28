@@ -127,6 +127,11 @@ nmap <leader>hi :GV<CR>
 " git log of current file
 nmap <leader>hif :GV!<CR>
 
+" -- STARTIFY --
+"  when opening file from startify, preserve CWD
+let g:startify_change_to_dir = 0
+"  ...or if the file is under VCS go to VCS root
+let g:startify_change_to_vcs_root = 1
 
 " -- THEME --
 "
