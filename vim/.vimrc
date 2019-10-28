@@ -81,6 +81,8 @@ nmap <leader>T :NERDTreeFind<CR>
 "ALT-d / ALT-D split vertical / horizontal
 nnoremap <A-d> <C-w>v
 nnoremap <A-D> <C-w>s
+nnoremap <A-w> :q<CR>
+nnoremap <A-q> :qa<CR>
 
 " ALT-[arrows] move between splits
 nnoremap <A-left> <C-w>h
