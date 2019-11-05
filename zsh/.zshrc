@@ -113,6 +113,15 @@ function http_poll() {
     done
 }
 
+function http_forward() {
+    if [ "$#" -ne 2 ]; then
+      echo "Forward (and dump) http traffic from src_port to dest_port\n"
+      echo "Usage: http_forward <src_port> <dest_port>"
+      return
+    fi
+    mitmdump -v -p $1 -m reverse:http://localhost:$2
+}
+
 function auto_goseq() {
   echo $1 | entr -p -c goseq -o $1.svg $1
   # echo $1 | entr -p -c -s "goseq -o $1.svg $1 && osascript -e 'tell application \"Firefox\" to activate' -e 'tell application \"System Events\"' -e 'keystroke \"r\" using command down' -e 'end tell'"
