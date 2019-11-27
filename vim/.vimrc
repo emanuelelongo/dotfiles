@@ -154,12 +154,17 @@ endif
 
 " -- CODING --
 "
+" Comment style for typescript - doesn't work :(
+autocmd FileType typescript setlocal commentstring=//\ %s
 
 " GOTO shortcuts
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Format
+nmap <leader>m :Format<CR>
 
 " CTRL-SPACE to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()

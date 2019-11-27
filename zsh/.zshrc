@@ -138,7 +138,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.yarn/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/Library/Python/3.7/bin
-export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 export PATH=$PATH:/usr/local/Cellar/vim/8.1.0001/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:/usr/local/share/dotnet
@@ -149,9 +148,6 @@ export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/bin
-
-### Mono - .NET Framework ###
-export FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/5.4.1/lib/mono/4.5
 
 ### FZF - Fuzzy Search ###
 export FZF_DEFAULT_COMMAND='fd --type f'
