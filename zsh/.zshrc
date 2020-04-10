@@ -1,3 +1,7 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 plugins=(
   docker
   docker-compose
@@ -34,7 +38,7 @@ alias hi="highlight --out-format=xterm256"
 alias listen="ncat -kl"
 alias py=python3
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias k="kubectl --insecure-skip-tls-verify"
+alias k="kubectl"
 
 ### FUNCTIONS ###
 function mkcd() { mkdir -p "$@" && cd "$_"; }
@@ -127,6 +131,27 @@ function auto_goseq() {
   # echo $1 | entr -p -c -s "goseq -o $1.svg $1 && osascript -e 'tell application \"Firefox\" to activate' -e 'tell application \"System Events\"' -e 'keystroke \"r\" using command down' -e 'end tell'"
 }
 
+function lucia() {
+  if [ "$#" -ne 3 ]; then
+    echo "Usage: lucia <source folder> <file to append> <dest folder>"
+    return
+  fi
+  
+  src=$1
+  append=$2
+  dest=$3
+  
+  mkdir -p "$dest"
+  i=0
+  total=$(ls "$src"/*.pdf | wc -l | xargs)
+  for f in "$src"/*.pdf; do
+    i=$(( i + 1 ))
+    out=$dest/$(basename -- "$f")
+    "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" -o "$out" "$f" "$append"
+    echo -ne "$i"/"$total"'\r';
+  done
+}
+
 ### N - Node.js Version Manager ###
 export N_PREFIX=$HOME/n
 
@@ -142,6 +167,7 @@ export PATH=$PATH:/usr/local/Cellar/vim/8.1.0001/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:/usr/local/share/dotnet
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/flutter/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
@@ -176,6 +202,7 @@ compctl -K _dotnet_zsh_complete dotnet
 
 # Completion for kubectl
 source <(kubectl completion zsh)
+source /usr/local/bin/aws_zsh_completer.sh
 
 ### SHELL PROMPT ###
 # powerlevel10k: to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
