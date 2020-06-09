@@ -16,6 +16,7 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export LANG=en_GB.UTF-8
+setopt HIST_IGNORE_SPACE
 # show PWD as tab name instead of process name
 # (warning: some zsh theme doesn't work well with this configuration)
 DISABLE_AUTO_TITLE="true"
@@ -70,6 +71,8 @@ function gtree {
  		tree "${@}" -a
  	fi
 }
+
+function urlencode() { jq -sRr @uri }
 
 function http_ok() {
     if [ "$#" -lt 1 ]; then

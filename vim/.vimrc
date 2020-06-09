@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint', 'coc-lists', 'coc-tslint-plugin' ]
+let g:coc_global_extensions=[ 'coc-json', 'coc-tsserver', 'coc-omnisharp', 'coc-eslint', 'coc-lists', 'coc-tslint-plugin', 'coc-go' ]
 
 syntax on
 :augroup numbertoggle

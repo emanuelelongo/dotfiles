@@ -1201,15 +1201,15 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>760 796 400 129 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>512 1788 620 392 -138 1200 1920 1177 </string>
+	<string>2410 591 620 392 1440 -189 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>131 1382 606 469 -138 1200 1920 1177 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>360 711 1018 447 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>193 654 730 513 0 0 1920 1177 </string>
+	<string>2099 445 730 513 1440 -189 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>130 626 730 538 0 0 1920 1200 </string>
+	<string>200 537 1153 783 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>-134 1202 1909 1161 -138 1200 1920 1177 </string>
 	<key>New Bookmarks</key>
@@ -2363,15 +2363,16 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.6</string>
-		<string>3.3.0</string>
 		<string>3.3.8</string>
+		<string>3.3.4</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
 		<string>3.3.7</string>
-		<string>3.2.9</string>
+		<string>3.3.9</string>
+		<string>3.3.0</string>
 		<string>3.3.2</string>
-		<string>3.3.4</string>
+		<string>3.2.9</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -2400,7 +2401,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A6643ACB-8D3F-401A-9F35-77826498209D</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>66</integer>
+	<integer>165</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3181,15 +3182,17 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-02-08T13:38:43Z</date>
+	<date>2020-06-09T07:02:41Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>2457531204</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<false/>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
@@ -3219,7 +3222,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.8</string>
+	<string>3.3.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
