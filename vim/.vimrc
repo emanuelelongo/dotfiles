@@ -81,6 +81,7 @@ nmap <leader>T :NERDTreeFind<CR>
 "ALT-d / ALT-D split vertical / horizontal
 nnoremap <A-d> <C-w>v
 nnoremap <A-D> <C-w>s
+"ALT-w / ALT-q close current / all splits
 nnoremap <A-w> :q<CR>
 nnoremap <A-q> :qa<CR>
 

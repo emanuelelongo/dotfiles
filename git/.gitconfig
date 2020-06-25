@@ -20,6 +20,7 @@
 	sync =  "!git fetch -p && git remote prune origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
 	ba = "! for branch in `git branch -r | grep -v HEAD`;do echo `git show --pretty=format:\"%Cred %cn %>|(40) %Cblue %ar %>|(80) %Creset\" $branch | head -n 1` $branch; done | sort -r"
 	b = "!git show-branch --list $(git rev-parse --abbrev-ref HEAD)"
+	all = "!f() { ls -R -d */.git | sed s,/.git,, | xargs -P10 -I{} git -C {} $1; }; f"
 
 [http]
     sslVerify = false
