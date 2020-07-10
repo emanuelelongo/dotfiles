@@ -67,7 +67,7 @@ function gtree {
  	ignore_pattern="$(grep -hvE '^$|^#' "${git_ignore_files[@]}" 2>/dev/null|tr '\n' '\|')"
  	if git status &> /dev/null && [[ -n "${ignore_pattern}" ]]; then
  		tree -I ".git|${ignore_pattern}" "${@}" -a
- 	else 
+ 	else
  		tree "${@}" -a
  	fi
 }
@@ -112,7 +112,7 @@ function http_poll() {
 
     while true; do
         output=$(http -h $1 --timeout=5 2>1 | grep HTTP/1.1 | awk {'print $2'})
-        if [ "$output" -eq "200" ]; then 
+        if [ "$output" -eq "200" ]; then
             osascript -e 'tell app "System Events" to display alert "'$1' is now available"'
             return
         fi
@@ -139,11 +139,11 @@ function lucia() {
     echo "Usage: lucia <source folder> <file to append> <dest folder>"
     return
   fi
-  
+
   src=$1
   append=$2
   dest=$3
-  
+
   mkdir -p "$dest"
   i=0
   total=$(ls "$src"/*.pdf | wc -l | xargs)
@@ -165,6 +165,7 @@ export PATH=$PATH:$HOME/.vimpkg/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.yarn/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.dotnet/tools
 export PATH=$PATH:$HOME/Library/Python/3.7/bin
 export PATH=$PATH:/usr/local/Cellar/vim/8.1.0001/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -195,7 +196,7 @@ export GOPATH=$HOME/go
 
 ### COMPLETIONS ###
 # Completion for the dotnet CLI #
-_dotnet_zsh_complete() 
+_dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
 
