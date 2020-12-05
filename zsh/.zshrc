@@ -206,7 +206,6 @@ compctl -K _dotnet_zsh_complete dotnet
 
 # Completion for kubectl
 source <(kubectl completion zsh)
-source /usr/local/bin/aws_zsh_completer.sh
 
 ### SHELL PROMPT ###
 # powerlevel10k: to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
