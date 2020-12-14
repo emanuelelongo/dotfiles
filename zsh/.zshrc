@@ -25,6 +25,17 @@ function precmd () {
   echo -ne "$window_title"
 }
 
+# apply directory-specific .zsh_history
+chpwd() {
+  if test -f "${PWD}/.zsh_history" && [ $(dirname ${HISTFILE}) != ${PWD} ]; then
+    export HISTFILE="${PWD}/.zsh_history"
+    # -Pp reloads the history file (undocumented? Shouldn't be -R ?)
+    fc -Pp "${PWD}/.zsh_history"
+
+    echo "History context changed"
+  fi
+}
+
 ### KEY BINDINGS ###
 # ALT + Left Arrow
 bindkey "[D" backward-word
