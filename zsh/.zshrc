@@ -60,6 +60,14 @@ function myip() {
 	curl -s https://ip.seeip.org/
 }
 
+function witch() {
+  ls -al $(which $1)
+}
+
+function pubip() {
+	curl -s https://ip.seeip.org/
+}
+
 function github() {
 	if [ $2 ]; then
 		git clone https://github.com/$1/$2.git
@@ -166,6 +174,7 @@ function lucia() {
   done
 }
 
+
 ### N - Node.js Version Manager ###
 export N_PREFIX=$HOME/n
 
@@ -178,6 +187,7 @@ export PATH=$PATH:$HOME/.yarn/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.dotnet/tools
 export PATH=$PATH:$HOME/Library/Python/3.7/bin
+export PATH=$PATH:/usr/local/opt/openjdk/bin
 export PATH=$PATH:/usr/local/Cellar/vim/8.1.0001/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:/usr/local/share/dotnet
@@ -201,6 +211,11 @@ export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
 # Temporary Fix: removed forward-char from list (pasting issue)
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-forward-char vi-end-of-line vi-add-eol)
 export ZSH_AUTOSUGGEST_STRATEGY=(history)
+
+# Disable suggestion for large buffers
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+# Disable syntax highlight for large buffers (slow pasting issue)
+export ZSH_HIGHLIGHT_MAXLENGTH=128
 
 ### Go - Go Language ###
 export GOPATH=$HOME/go
