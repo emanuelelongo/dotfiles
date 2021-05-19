@@ -26,15 +26,21 @@ function precmd () {
 }
 
 # apply directory-specific .zsh_history
-chpwd() {
-  if test -f "${PWD}/.zsh_history" && [ $(dirname ${HISTFILE}) != ${PWD} ]; then
-    export HISTFILE="${PWD}/.zsh_history"
+function setHistory() {
+  h=$(find `( CP=${PWD}; while [ -n "$CP" ] ; do echo $CP; CP=${CP%/*}; done; echo / ) ` -mindepth 1 -maxdepth 1 -type f -name '.zsh_history' -print -quit)
+  if [ ${HISTFILE} != ${h} ]; then
+    export HISTFILE="${h}"
     # -Pp reloads the history file (undocumented? Shouldn't be -R ?)
-    fc -Pp "${PWD}/.zsh_history"
-
-    echo "History context changed"
+    fc -Pp "${h}"
   fi
 }
+# on change directory
+chpwd() {
+    setHistory
+}
+# on new shell
+setHistory
+
 
 ### KEY BINDINGS ###
 # ALT + Left Arrow
